@@ -23,6 +23,10 @@ app.use(session({
 }));
 app.use(flash());
 app.use(fileUpload());
+var methodOverride = require('method-override')
+
+// override with POST having ?_method=PUT
+app.use(methodOverride('_method'))
 
 app.set('layout' , './layouts/main');
 app.set('view engine','ejs')

@@ -18,10 +18,6 @@ try {
 
     const food={latest,thai,american,indian};
 
-
-
-
-
     res.render('index',{title:'Feastful Fusion-Home',categories,food});
 
 } catch (error) {
@@ -81,7 +77,6 @@ exports.ExploreCategoriesById=async(req,res)=>{
 // POST /search
 //  search Recipe
 exports.searchRecipe=async(req,res)=>{
-
 
     try {
         let searchTerm=req.body.searchTerm;
@@ -200,6 +195,21 @@ exports.submitRecipeOnPost=async(req,res)=>{
     }
 
 }
+
+//DELETE 
+//delete customer
+exports.deleteRecipe=async(req,res)=>{
+    try{
+        await Recipe.deleteOne({_id: req.params.id});
+        req.flash('success', 'Recipe deleted successfully!');
+        res.redirect("/");
+
+    }catch(error)
+    {
+        console.log(error);
+    }
+};
+
 
 
 
